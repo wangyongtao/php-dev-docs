@@ -52,9 +52,41 @@
 
 > wget http://zlib.net/zlib-1.2.8.tar.gz
 
+### 安装freetype
+- tar xzvf freetype-2.1.5.tar.gz (http://freetype.sourceforge.net/download.html#stable)
+- cd freetype-2.1.5
+- ./configure --prefix=/usr/local/modules/freetype
+- make
+- make install
+
+# 安装 jpeg:
+> http://www.ijg.org/
+> http://www.ijg.org/files/
+> wget http://www.ijg.org/files/jpegsrc.v9.tar.gz
+> 
+> - $ wget http://www.ijg.org/files/jpegsrc.v9.tar.gz 
+> - $ tar zxf jpegsrc.v9.tar.gz  
+> - $ cd jpeg-9/ 
+> - $ ./configure --prefix=/usr/local/lib/jpeg9  
+> - $ make  
+> - $ sudo make install  
+
 ### 安装libpng:
 > # 网站：
 > http://libmng.com/pub/png/libpng.html
 > #下载：
 > http://sourceforge.net/projects/libpng/
 > ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng16/libpng-1.6.17.tar.gz
+> 
+> 
+> 
+> 
+> 
+
+### 安装 MySQL：
+> http://dev.mysql.com/downloads/
+> 
+> 
+> 
+> 
+>

@@ -3,9 +3,15 @@ PHP乱码的一些问题
 PHP开发中出现乱码，一般在文件、数据、各处的格式不同造成的。 
 
 请包装PHP文件格式为UTF8，模板HTML/CSS/JavaScript等文件也要保存成UTF8格式。
+操作：Notepad++: 打开文件，选择[格式(M)]>[转为UTF8无BOM编码格式]，然后保存即可
 
-操作：
-Notepad++: 打开文件，选择[格式(M)]>[转为UTF8无BOM编码格式]，然后保存即可
+由于目前还不是Unicode的，所以所有的字符串处理函数尽量换成多字节处理函数。
+即把substr之类的函数改成mb_substr，这可能需要安装mbstring扩展。
+参见PHP文档：http://php.net/manual/zh/ref.mbstring.php
+
+PHP与MySQL的数据库的交互时，一定要保证双方的编码一致。
+
+
 
 
 

@@ -10,5 +10,5 @@ PHP官方文档： http://php.net/manual/zh/
 
 
 W3School:
-HTML: http://www.w3school.com.cn/html/index.asp
-PHP:  http://www.w3school.com.cn/php/index.asp
+- HTML: http://www.w3school.com.cn/html/index.asp
+- PHP:  http://www.w3school.com.cn/php/index.asp

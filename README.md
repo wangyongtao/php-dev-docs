@@ -14,3 +14,8 @@ W3School:
 - PHP:  http://www.w3school.com.cn/php/index.asp
 
 http://www.php100.com/
+
+
+##### phpDocumentor
+> - http://phpdoc.org/
+> - PHPDoc是PEAR下面的一个非常优秀的模块，它的目标是实现类似javadoc的功能，可以为你的代码快速生成具有相互参照,索引等功能的API文档。

@@ -15,6 +15,8 @@ W3School:
 
 http://www.php100.com/
 
+### PCEL:  
+PECL 的全称是 The PHP Extension Community Library ，是一个开放的并通过 PEAR(PHP Extension and Application Repository，PHP 扩展和应用仓库)打包格式来打包安装的 PHP 扩展库仓库。通过 PEAR 的 Package Manager 的安装管理方式，可以对 PECL 模块进行下载和安装。
 
 ##### phpDocumentor
 > - http://phpdoc.org/

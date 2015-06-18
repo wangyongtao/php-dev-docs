@@ -9,25 +9,25 @@
 > - ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.bz2
 
 ### 安装 Nginx :
-> + 网站：http://nginx.org/en/docs/
-> + 下载：http://nginx.org/download/nginx-1.8.0.tar.gz
+> + 网站地址：http://nginx.org/en/docs/
+> + 下载地址：http://nginx.org/download/nginx-1.8.0.tar.gz
 
-Nginx :
-
+安装命令:
+```
+下载：
 wget http://nginx.org/download/nginx-1.8.0.tar.gz
 
 tar zxf nginx-1.8.0.tar.gz
 cd nginx-1.8.0
-
 ./configure --prefix=/usr/local/nginx
 make
 sudo make install
 
 ps -ef |grep nginx
 
-
+启动Nginx: 
 sudo /usr/local/nginx/sbin/nginx
-
+```
 查看Nginx版本：
 ```
 /usr/local/nginx/sbin/nginx -V

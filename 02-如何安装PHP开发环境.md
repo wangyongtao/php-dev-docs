@@ -59,8 +59,12 @@ Mac-64-bit: http://wiki.openssl.org/index.php/Compilation_and_Installation#Mac
 > #简介：
 > zlib是提供数据压缩用的函式库，由Jean-loup Gailly与Mark Adler所开发，初版0.9版在1995年5月1日发表。zlib使用DEFLATE算法，最初是为libpng函式库所写的，后来普遍为许多软件所使用。此函式库为自由软件，使用zlib授权。
 
-> wget http://zlib.net/zlib-1.2.8.tar.gz
-
+```
+$ wget http://zlib.net/zlib-1.2.8.tar.gz
+$ ./configure --prefix=/usr/local/lib/zlib
+$ make
+$ make install
+```
 
 ### 安装 libiconv (字符编码转换库)
 
@@ -123,7 +127,7 @@ http://pecl.php.net/get/xhprof-0.9.4.tgz
 
 
 
-
+```
  ./configure \
     --prefix=/usr/local/php \
     --with-config-file-path=/usr/local/php \
@@ -141,27 +145,71 @@ http://pecl.php.net/get/xhprof-0.9.4.tgz
     --enable-bcmath \
     --enable-xml \
     --enable-zip \
-    --with-zlib \
+    --with-zlib=/usr/local/lib/zlib \
     --with-gd \
     --with-png-dir=/usr/local/lib/libpng \
     --with-jpeg-dir=/usr/local/lib/libjpeg \
-    --with-openssl=/usr/include/openssl \
-    --with-curl \
+    --with-openssl=/usr/local/ssl/macos-x86_64/ \
+    --with-curl=/usr/local/curl \
     --with-mhash=/usr/local/lib/libmhash \
     --with-mcrypt=/usr/local/lib/libmcrypt \
     --with-iconv=/usr/local/lib/libiconv \
+```
 
+```
+# 报错：OpenSSL
 ... ...  
 checking for DSA_get_default_method in -lssl... no  
 checking for X509_free in -lcrypto... yes  
 checking for RAND_egd... no  
 checking for pkg-config... no  
 configure: error: Cannot find OpenSSL's <evp.h>  
-Mac-mini:php-5.6.9 WangTom$  
+Mac-mini:php-5.6.9 WangTom$
+```
+
 
 Mac-mini:php-5.6.9 WangTom$ which openssl
 /usr/bin/openssl
 
+
+修改openssl参数地址：
+--with-openssl=/usr/local/ssl/macos-x86_64/
+
+```
+# 报错：zlib
+... ... 
+checking bundled sqlite3 library... yes  
+checking for ZLIB support... yes  
+checking if the location of ZLIB install directory is defined... no  
+configure: error: Cannot find libz  
+Mac-mini:php-5.6.9 WangTom$  
+```
+修改openssl参数地址：
+--with-openssl=/usr/local/lib/zlib 
+
+
+```
+# 报错： curl
+... ... 
+checking whether to enable ctype functions... yes
+checking for cURL support... yes
+checking for cURL in default path... not found
+configure: error: Please reinstall the libcurl distribution -
+    easy.h should be in <curl-dir>/include/curl/
+Mac-mini:php-5.6.9 WangTom$
+```
+
+
+
+
+```
+# 报错： cURL
+checking whether to enable ctype functions... yes
+checking for cURL support... yes
+checking for cURL in default path... not found
+configure: error: Please reinstall the libcurl distribution -
+    easy.h should be in <curl-dir>/include/curl/
+```
 
 
 Mac-mini:php-5.6.9 WangTom$ brew --config

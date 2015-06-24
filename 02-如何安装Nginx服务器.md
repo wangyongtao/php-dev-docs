@@ -2,17 +2,17 @@
 
 # 02-如何源码安装Nginx服务器
 
-### 安装 PCRE :
-> # 网站：http://pcre.org/   
-> # 下载：
+##### 安装 PCRE :
+> 网站：http://pcre.org/   
+> 下载：
 > - ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/
 > - ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.bz2
 
-### 安装 Nginx :
+##### 安装 Nginx :
 > + 网站地址：http://nginx.org/en/docs/
 > + 下载地址：http://nginx.org/download/nginx-1.8.0.tar.gz
 
-安装命令:
+##### 安装命令:
 ```
 下载：
 wget http://nginx.org/download/nginx-1.8.0.tar.gz
@@ -42,7 +42,10 @@ sudo /usr/local/nginx/sbin/nginx -t
 sudo /usr/local/nginx/sbin/nginx -s reload
 
 ```
-查看Nginx版本：
+
+##### 检查是否安装成功：  
+
+[1] 命令行查看Nginx版本：
 ```
 /usr/local/nginx/sbin/nginx -V
 Mac-mini:nginx-1.8.0 WangTom$ /usr/local/nginx/sbin/nginx -V
@@ -54,8 +57,7 @@ Mac-mini:nginx-1.8.0 WangTom$ /usr/local/nginx/sbin/nginx -v
 nginx version: nginx/1.8.0
 ```
 
-检查是否安装成功：
-
+[2] 浏览器中查看页面
 访问： http://localhost/    
 页面出现：
 ```
@@ -84,8 +86,7 @@ Mac-mini:html WangTom$
 
 
 
-
-参考地址：
+##### 参考地址：
 
 Building nginx from Sources:
 http://nginx.org/en/docs/configure.html

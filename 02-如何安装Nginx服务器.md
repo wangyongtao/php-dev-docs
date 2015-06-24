@@ -58,17 +58,14 @@ nginx version: nginx/1.8.0
 ```
 
 [2] 浏览器中查看页面
-访问： http://localhost/    
-页面出现：
+在浏览器中访问： http://localhost/ 安装成功则页面出现：
 ```
-Welcome to nginx!
-
-If you see this page, the nginx web server is successfully installed and working. Further configuration is required.
-
+Welcome to nginx!  
+If you see this page, the nginx web server is successfully installed and working. 
+Further configuration is required.
 For online documentation and support please refer to nginx.org.
 Commercial support is available at nginx.com.
-
-Thank you for using nginx.
+Thank you for using nginx.  
 ```
 查看 Nginx 版本：
 Mac-mini:html WangTom$ sudo /usr/local/nginx/sbin/nginx -v

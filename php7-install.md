@@ -152,14 +152,17 @@ $ vim /usr/local/php7/etc/php-fpm.d/www.conf
   > group = www  
 
 开始启动 php-fpm：
+```
 Mac-mini:php-7.0.0alpha1 WangTom$ /usr/local/php7/sbin/php-fpm
 [23-Jun-2015 18:30:48] NOTICE: [pool www] 'user' directive is ignored when FPM is not running as root
 [23-Jun-2015 18:30:48] NOTICE: [pool www] 'group' directive is ignored when FPM is not running as root
 [23-Jun-2015 18:30:48] ERROR: unable to bind listening socket for address '127.0.0.1:9000': Address already in use (48)
 [23-Jun-2015 18:30:48] ERROR: FPM initialization failed
-
-这个错误问题有两个：(1)没有使用root账户执行启动命令。(2)端口9000被占用
-解决方法：使用root账户执行php-fpm启动，或 sudo /usr/local/php7/sbin/php-fpm, 关闭 PHP-fpm, 并重新启动：
+```
+这个错误问题有两个：(1)没有使用root账户执行启动命令 (2)端口9000被占用
+解决方法：
+使用root账户执行php-fpm启动，或 sudo /usr/local/php7/sbin/php-fpm  
+关闭 PHP-fpm, 并重新启动：
 ```
 Mac-mini:~ WangTom$ lsof -P | grep ':9000' | awk '{print $2}' | xargs kill -9
 Mac-mini:php-7.0.0alpha1 WangTom$ /usr/local/php7/sbin/php-fpm -t

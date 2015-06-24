@@ -201,8 +201,8 @@ which: 指令会在环境变量$PATH设置的目录里查找符合条件的文�
 
 参考链接：
 
-​http://php.net/archive/2015.php#id2015-06-11-3
-
+- http://php.net/archive/2015.php#id2015-06-11-3
+- http://www.hashbangcode.com/blog/compiling-and-installing-php7-ubuntu
 
 
 [END]

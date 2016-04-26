@@ -12,7 +12,37 @@
 ### PHP开发环境包括什么？
 
 
+
 ### 如何安装PHP开发环境？
+
+1 使用一键安装包：  
+
+Windows系统:
+
+PHPStudy:  
+http://www.phpstudy.net/
+
+AppServ:  
+http://www.appservnetwork.com/en/
+
+WampServer:   
+http://www.wampserver.com/
+
+UPUPW: 
+http://www.upupw.net/
+
+XAMPP:支持Windows/Linux/MacOS平台   
+https://www.apachefriends.org/zh_cn/index.html
+
+Linux系统: 
+
+http://lnmp.org/
+http://www.lanmps.com/
+XAMPP:支持Windows/Linux/MacOS平台   
+https://www.apachefriends.org/zh_cn/index.html
+
+2 使用源码编译安装： 
+
 
 
 ### 如何使用源码编译安装PHP环境？

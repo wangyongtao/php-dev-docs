@@ -162,7 +162,7 @@ $ git config --global user.name "WangYongTao"
 ```
 //局部的设置 
 $ git config --local user.email "ahwyt2008@163.com"
-$ git config --local user.name "WANG-YongTao"
+$ git config --local user.name "WANGYongTao"
 ```
 
 

@@ -19,7 +19,9 @@ Darwin MacWang.local 15.3.0 x86_64 i386
 1-2 检测GCC版本：
 ```
 $ gcc -v
-Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/c++/4.2.1
+Configured with: 
+--prefix=/Applications/Xcode.app/Contents/Developer/usr 
+--with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/c++/4.2.1
 Apple LLVM version 7.0.2 (clang-700.1.81)
 Target: x86_64-apple-darwin15.3.0
 Thread model: posix
@@ -243,7 +245,8 @@ $  ./configure --help | grep 'pcre'
 
 报错3 ：
 $ sudo ./config  --prefix=/usr/local/openssl
-Operating system: i686-apple-darwinDarwin Kernel Version 15.3.0: Thu Dec 10 18:40:58 PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64
+Operating system: i686-apple-darwinDarwin Kernel Version 15.3.0: Thu Dec 10 18:40:58 PST 2015; 
+root:xnu-3248.30.4~1/RELEASE_X86_64
 WARNING! If you wish to build 64-bit library, then you have to
          invoke './Configure darwin64-x86_64-cc' *manually*.
          You have about 5 seconds to press Ctrl-C to abort.
@@ -326,12 +329,19 @@ $ ioreg -l -p IODeviceTree | grep "firmware-abi" | sed -e 's/[^0-9A-Z]//g'
 ## 参考资料
 
 http://nginx.org/en/docs/configure.html
+
 https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/
+
 http://segmentfault.com/a/1190000003822041?_ea=392297
+
 http://lists.apple.com/archives/macnetworkprog/2015/Jun/msg00025.html
+
 http://www.iyunv.com/thread-18789-1-1.html
+
 https://wiki.openssl.org/index.php/Compilation_and_Installation#Mac
+
 http://www.nooidea.com/2011/02/switch-mac-into-64-bit.html
+
 
 ## 更新记录
 

@@ -13,7 +13,7 @@ ProductVersion:	10.11.3
 BuildVersion:	15D21
 
 $ uname -mnprs
-Darwin MacWang.local 15.3.0 x86_64 i386
+Darwin MacWangYongTao.local 15.3.0 x86_64 i386
 ```
 
 1-2 检测GCC版本：
@@ -105,7 +105,7 @@ $./Configure LIST
 > $sudo make install
 
 
-# 3 安装Nginx
+## 3 安装Nginx
 
 下载并安装Nginx:
 
@@ -134,7 +134,7 @@ $ ./configure --prefix=/usr/local/webserver/nginx \
 --with-zlib=path — sets the path to the sources of the zlib library.(注意是源码的路径)
 
 
-# 4 配置Nginx:
+## 4 配置Nginx:
 
 配置文件路径： /usr/local/webserver/nginx/nginx.conf
 
@@ -142,7 +142,7 @@ $ sudo /usr/local/webserver/nginx/nginx -t
 nginx: the configuration file /usr/local/webserver/nginx/nginx.conf syntax is ok
 nginx: configuration file /usr/local/webserver/nginx/nginx.conf test is successful
 
-# 5 启动Nginx:
+## 5 启动Nginx:
 
 查看版本：
 ```
@@ -199,7 +199,7 @@ $ sudo /usr/local/webserver/nginx/nginx -s reload
 
 ## 遇到的问题与解决办法  
 
-报错1： 没有指定 OpenSSL 库.
+### 报错1： 没有指定 OpenSSL 库.  
 
 内容:
 ```
@@ -208,13 +208,13 @@ You can either do not enable the modules, or install the OpenSSL library
 into the system, or build the OpenSSL library statically from the source
 with nginx by using --with-openssl=<path> option.
 ```
-分析: 启用with-http_ssl_module模块，但没有启用openssl, 启用的SSL模块需要依赖openssl库
+分析: 启用with-http_ssl_module模块，但没有启用openssl, 启用的SSL模块需要依赖openssl库  
 解决: configure时增加参数 [with-openssl=../openssl-1.0.2e].
 
 
-报错2: 参数配置路径出错
+### 报错2: 参数配置路径出错
 
-参数with-pcre,如果指定的是with-pcre=/usr/local/pcre-8.38,则执行 make 时会报错：
+参数with-pcre,如果指定的是with-pcre=/usr/local/webserver/pcre-8.38,则执行 make 时会报错：  
 
 ```
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -f objs/Makefile
@@ -222,12 +222,12 @@ cd /usr/local/pcre-8.38 \
     && if [ -f Makefile ]; then /Applications/Xcode.app/Contents/Developer/usr/bin/make distclean; fi \
     && CC="cc" CFLAGS="-O2 -pipe " \
     ./configure --disable-shared
-/bin/sh: ./configure: No such file or directory
-make[1]: *** [/usr/local/pcre-8.38/Makefile] Error 127
+/bin/sh: ./configure: No such file or directory  
+make[1]: *** [/usr/local/webserver/pcre-8.38/Makefile] Error 127  
 make: *** [build] Error 2
 ```
 
-分析： set path to PCRE library sources, 注意是PCRE的源代码的路径，不是编译安装后的路径
+分析： set path to PCRE library sources, 注意是PCRE的源代码的路径，不是编译安装后的路径  
 ```
 查看配置帮助：
 $  ./configure --help | grep 'pcre'
@@ -238,14 +238,14 @@ $  ./configure --help | grep 'pcre'
   --with-pcre-jit                    build PCRE with JIT compilation support
 ```
 
-注意这里的路径是 PCRE library sources, 是PCRE的源代码。
-直接去官网下载PCRE, 解压至与 nginx-1.8.1 平级的目录中(或者其他的路径)。
+注意这里的路径是 PCRE library sources, 是PCRE的源代码。  
+直接去官网下载PCRE, 解压至与 nginx-1.8.1 平级的目录中(或者其他的路径)。  
 
-解决： 将PCRE路径指定为源代码的路径，比如：with-pcre=/softwares/pcre-8.38
+解决： 将PCRE路径指定为源代码的路径，比如：with-pcre=/softwares/pcre-8.38  
 
-报错3 ：
+### 报错3 ：
 $ sudo ./config  --prefix=/usr/local/openssl
-Operating system: i686-apple-darwinDarwin Kernel Version 15.3.0: Thu Dec 10 18:40:58 PST 2015; 
+Operating system: i686-apple-darwinDarwin Kernel Version 15.3.0: Thu Dec 10 18:40:58 PST 2015;   
 root:xnu-3248.30.4~1/RELEASE_X86_64
 WARNING! If you wish to build 64-bit library, then you have to
          invoke './Configure darwin64-x86_64-cc' *manually*.
@@ -255,7 +255,7 @@ WARNING! If you wish to build 64-bit library, then you have to
 $ sudo ./Configure darwin64-x86_64-cc  --prefix=/usr/local/openssl
 备注： 查看支持的平台列表:$./Configure LIST
 
-报错4：
+### 报错4：Undefined symbols for architecture x86_64
 
 ```
 Undefined symbols for architecture x86_64:
@@ -288,30 +288,30 @@ changes to kernel architecture failed to save!
 ```
 (4) 执行配置NGINX命令前，增加 export KERNEL_BITS=64   命令，指定系统的运行模式为64位的。
 
-报错5: 重启NGIXN报错：
+### 报错5: 重启NGIXN报错：
 内容:
-nginx: [error] open() "/usr/local/nginx/nginx.pid" failed (2: No such file or directory)
+nginx: [error] open() "/usr/local/webserver/nginx/nginx.pid" failed (2: No such file or directory)
 
 分析:
 解决：使用nginx -c的参数指定nginx.conf文件的位置:
-/usr/local/nginx/nginx -c /usr/local/nginx/nginx.conf
+/usr/local/webserver/nginx/nginx -c /usr/local/webserver/nginx/nginx.conf
 
 注意这里的nginx路径，在编译时有指定，可能像网上的有些不同，默认应该是：
-/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+/usr/local/webserver/nginx/sbin/nginx -c /usr/local/webserver/nginx/conf/nginx.conf
 
 ```
 检测配置文件是否正确:  (出错了，没有找到nginx.conf文件)
-$ sudo /usr/local/nginx/nginx -t
-nginx: [emerg] open() "/usr/local/nginx/nginx.conf" failed (2: No such file or directory)
-nginx: configuration file /usr/local/nginx/nginx.conf test failed
+$ sudo /usr/local/webserver/nginx/nginx -t  
+nginx: [emerg] open() "/usr/local/webserver/nginx/nginx.conf" failed (2: No such file or directory)  
+nginx: configuration file /usr/local/webserver/nginx/nginx.conf test failed  
 
 复制配置文件：(复制一份)
 $sudo cp nginx.conf.default nginx.conf
 
 再次检测： (OK)
-$ sudo /usr/local/nginx/nginx -t
-nginx: the configuration file /usr/local/nginx/nginx.conf syntax is ok
-nginx: configuration file /usr/local/nginx/nginx.conf test is successful
+$ sudo /usr/local/webserver/nginx/nginx -t  
+nginx: the configuration file /usr/local/webserver/nginx/nginx.conf syntax is ok  
+nginx: configuration file /usr/local/webserver/nginx/nginx.conf test is successful  
 ```
 
 
@@ -319,6 +319,7 @@ nginx: configuration file /usr/local/nginx/nginx.conf test is successful
 
 ```
 $ ps -ef |grep nginx
+$ kill -9 [pid]
 $ arch
 $ uname -a
 $ ioreg -l -p IODeviceTree | grep "firmware-abi" | sed -e 's/[^0-9A-Z]//g'

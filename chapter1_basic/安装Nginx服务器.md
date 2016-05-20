@@ -84,14 +84,21 @@ the OpenSSL library – required by NGINX SSL modules to support the HTTPS proto
 $ wget http://www.openssl.org/source/openssl-1.0.2e.tar.gz
 $ tar -zxf openssl-1.0.2e.tar.gz
 $ cd openssl-1.0.2e
-$ ./Configure darwin64-x86_64-cc --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
+$ ./Configure darwin64-x86_64-cc --prefix=/usr/local/webserver/openssl --openssldir=/usr/local/webserver/openssl
 $ make
 $ sudo make install
 
-```
+查看版本(检测是否安装成功):  
+$ /usr/local/webserver/openssl/bin/openssl version  
+OpenSSL 1.0.2h  3 May 2016  
+
+
+
 
 查看OpenSSL支持的平台列表：
 $./Configure LIST
+
+```
 
 注意事项:
 > If configuring for 64-bit OS X, then use a command similar to:
@@ -103,6 +110,7 @@ $./Configure LIST
 > ./Configure darwin-i386-cc shared no-ssl2 no-ssl3 no-comp --openssldir=/usr/local/ssl/macosx-i386
 > $make depend
 > $sudo make install
+
 
 
 ## 3 安装Nginx

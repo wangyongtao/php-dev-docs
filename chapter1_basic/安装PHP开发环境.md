@@ -220,14 +220,28 @@ Mac-mini:php-5.6.9 WangTom$
 
 ```
 # 报错： curl
+执行configure配置时报错：  
 ... ... 
 checking whether to enable ctype functions... yes
 checking for cURL support... yes
 checking for cURL in default path... not found
 configure: error: Please reinstall the libcurl distribution -
     easy.h should be in <curl-dir>/include/curl/
-Mac-mini:php-5.6.9 WangTom$
+$
 ```
+curl-7.49.0.tar.bz2 (7.1M) 
+$ wget https://curl.haxx.se/download/curl-7.49.0.tar.bz2 
+$ wget http://www.execve.net/curl/curl-7.49.0.tar.bz2 (备选下载地址)
+$ tar jxf curl-7.49.0.tar.bz2  
+$ cd curl-7.49.0  
+$ ./configure --prefix=/usr/local/webserver/curl
+$ make 
+$ sudo make install
+
+$ /usr/local/webserver/curl/bin/curl -V
+curl 7.49.0 (x86_64-apple-darwin15.3.0) libcurl/7.49.0 zlib/1.2.5
+Protocols: dict file ftp gopher http imap ldap ldaps pop3 rtsp smtp telnet tftp 
+Features: IPv6 Largefile libz UnixSockets 
 
 
 

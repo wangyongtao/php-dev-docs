@@ -109,7 +109,6 @@ Installing PDO headers:          /usr/local/webserver/php54/include/php/ext/pdo/
 
 $ sudo /data/softwares/php-5.4.44/build/shtool install -c ext/phar/phar.phar /usr/local/webserver/php54/bin
 $ sudo ln -s -f /usr/local/webserver/php54/bin/phar.phar /usr/local/webserver/php54/bin/phar
-
 ```
 
 通过命令行，查看版本:  
@@ -200,11 +199,13 @@ $ kill -9 11668 (这pid根据实际情况定)
 //重新启动，没有报错，OK
 $ sudo /usr/local/webserver/php54/sbin/php-fpm -y /usr/local/webserver/php54/etc/php-fpm.conf -R
 
-//查看版本
+```
+
+查看版本
+```
 $ /usr/local/webserver/php54/sbin/php-fpm -v
 PHP 5.4.44 (fpm-fcgi) (built: May 18 2016 19:17:13)
 ```
-
 
 安装完成后，如果发现/usr/local/webserver/php54/下没有PHP.ini配置文件，  
 就需要手动从源码中负责一份:
@@ -275,6 +276,7 @@ $ cat phpinfo.php
 date_default_timezone_set("PRC");
 phpinfo();
 ```
+
 打开浏览器，输入 http://localhost/phpinfo.php，即可看到相关新。
 
 
@@ -315,6 +317,7 @@ $ cd phpredis-2.2.7
 $ /usr/local/webserver/php54/bin/phpize  
 
 ```
+//遇到错误，找不到autoconf，使用brew安装一下: 
 $ /usr/local/webserver/php54/bin/phpize
 Configuring for:
 PHP Api Version:         20100412
@@ -322,9 +325,11 @@ Zend Module Api No:      20100525
 Zend Extension Api No:   220100525
 Cannot find autoconf. Please check your autoconf installation and the
 $PHP_AUTOCONF environment variable. Then, rerun this script.
-``
 
+//使用brew安装autoconf: 
 $ brew install autoconf
+```
+
 
 ```
 $ /usr/local/webserver/php54/bin/phpize
@@ -341,6 +346,7 @@ $ make
 $ make test
 $ sudo make install 
 
+
 ```
 //安装成功后，出现扩展的路径:   
 $ sudo make install
@@ -349,6 +355,7 @@ Installing shared extensions:/usr/local/webserver/php54/lib/php/extensions/no-de
 ```
 
 注意redis.so扩展的路径：
+
 /usr/local/webserver/php54/lib/php/extensions/no-debug-non-zts-20100525/
 
 
@@ -360,8 +367,8 @@ Installing shared extensions:/usr/local/webserver/php54/lib/php/extensions/no-de
 > extension=/usr/local/webserver/php54/lib/php/extensions/no-debug-non-zts-20100525/redis.so
 
 注意：如果不想写全路径，可以执行以下命令，做个软连接:  
-ln -s /usr/local/webserver/php54/lib/php/extensions/no-debug-non-zts-20100525/redis.so redis.so  
 
+ln -s /usr/local/webserver/php54/lib/php/extensions/no-debug-non-zts-20100525/redis.so redis.so  
 
 浏览器输入: http://localhost/phpinfo.php
 即可查看到已经安装了redis扩展了。
@@ -382,6 +389,7 @@ http://php.net/downloads.php
 https://github.com/phpredis/phpredis#classes-and-methods  
 https://github.com/phpredis/phpredis/issues/468  
 http://php.net/manual/zh/migration54.incompatible.php  
+
 
 ## 更新记录： 
 

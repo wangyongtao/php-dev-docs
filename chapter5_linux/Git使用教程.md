@@ -280,11 +280,17 @@ $ git diff git.doc.md
 
 查看日志： git log 
 
+说明: git-log - Show commit logs
+示例: git log --all --decorate --graph --pretty=oneline -10
+
 查看Git日志:  
 $ git log   
 
 查看所有日志，每条记录一行:  
-$ git log --pretty=oneline  
+$ git log --pretty=oneline 
+
+查看最近10条日志，每条记录一行:  
+$ git log --pretty=oneline -10
 
 查看所有日志，并有图表展示  
 $ git log --all --decorate --graph 
@@ -306,6 +312,27 @@ c585eb1 HEAD@{1}: reset: moving to HEAD^
 2630090 HEAD@{2}: commit: update readme.txt:TEST
 c585eb1 HEAD@{3}: commit: update readme.txt
 6d0aee0 HEAD@{4}: commit (initial): add new file readme.txt
+
+## Git 高阶命令
+
+
+作为merge的替代选择，你可以像下面这样将feature分支并入master分支：
+git checkout feature
+git rebase master
+
+它会把整个feature分支移动到master分支的后面，有效地把所有master分支上新的提交并入过来。
+但是，rebase为原分支上每一个提交创建一个新的提交，重写了项目历史，并且不会带来合并提交。
+
+合并多个提交：
+
+$ git rebase –i HEAD~3
+
+(1) git rebase –i HEAD~3
+(2) 将第二个及以后的 pick 修改为 s (squash)，然后输入“:x”(或“:wq”)保存并退出
+(3) 这时git会自动第二个提交合并到第一个中去，并提示输入新的comments,修改后输入“:x”(或“:wq”)保存并退出
+(4) 此时本地的（HEAD中）最后多次的提交已经被合并为一个提交。
+如果需要提交到远程仓库，运行git push --force origin master即可。
+
 
 ## 配置
 
@@ -378,12 +405,14 @@ Git远程操作详解
 http://www.ruanyifeng.com/blog/2014/06/git_remote.html  
 
 
+
 ## 参考链接   
 
-https://git-scm.com/  
-http://www.liaoxuefeng.com/  
-http://www.yiibai.com/  
-http://www.ruanyifeng.com/blog/2014/06/git_remote.html  
+1. https://git-scm.com/  
+2. http://www.liaoxuefeng.com/  
+3. http://www.yiibai.com/  
+4. http://www.ruanyifeng.com/blog/2014/06/git_remote.html  
+5. http://www.cnblogs.com/itech/p/5188932.html   
 ...    
 
 

@@ -12,14 +12,27 @@ Git下载： https://git-scm.com/download/
 ## Git基础命令 
 
 获取Git的版本:  
-$ git --version  
+> $ git --version  
 
 查看当前分支状态:  
-$ git status
+> $ git status
+> $ git status -s 
 
-查看当前分支的变化:  
-$ git diff 
+查看变化: 
+> $ git diff 查看当前分支的变化
+> $ git diff master origin/master 查看本地master与远程master的变化
 
+查看日志：
+> git log -10
+> git log --all --decorate --graph --pretty=oneline -10
+
+查看分支: 当前分支前面会标一个(*)星号
+> $ git branch  
+> $ git branch -a  列出所有分支(包括远程分支)
+> $ git branch -r  列出所有远程分支：  
+
+从 origin/master 创建并切换到分支 fea_dev:
+> $ git checkout -b fea_dev origin/master
 
 列出当前的配置：
 git config -l  (列出所有的配置)  
@@ -225,7 +238,8 @@ $ git log --pretty=oneline
 
 
 克隆操作：git clone  
-使用: git clone [<options>] [--] <repo> [<dir>]
+使用: 
+> git clone https://github.com/wangyongtao/php-dev-docs.git  
 
 git remote  
 
@@ -319,16 +333,16 @@ $ git diff git.doc.md
 $ git log   
 
 查看所有日志，每条记录一行:  
-$ git log --pretty=oneline 
+> $ git log --pretty=oneline 
 
 查看最近10条日志，每条记录一行:  
-$ git log --pretty=oneline -10
+> $ git log --pretty=oneline -10
 
 查看所有日志，并有图表展示  
-$ git log --all --decorate --graph 
+> $ git log --all --decorate --graph 
 
 查看所有日志，并用图表展示，每条记录一行  
-$ git log --all --decorate --graph --pretty=oneline 
+> $ git log --all --decorate --graph --pretty=oneline 
 
 恢复本地删除的文件:
 直接从本地把文件checkout出来就可以了，用不着从远程服务器上pull下来，因为，所有的历史版本你的本地都有的。
@@ -338,12 +352,14 @@ git ls-files -d | xargs -i git checkout {}
 git reflog 则列出了head曾经指向过的一系列commit  
 
 使用 git reflog 查看命令历史
+```
 $ git reflog
 2630090 HEAD@{0}: reset: moving to 2630090
 c585eb1 HEAD@{1}: reset: moving to HEAD^
 2630090 HEAD@{2}: commit: update readme.txt:TEST
 c585eb1 HEAD@{3}: commit: update readme.txt
 6d0aee0 HEAD@{4}: commit (initial): add new file readme.txt
+```
 
 ## Git 高阶命令
 
@@ -375,14 +391,14 @@ git config --global
 git config --local
 
 设置邮箱和用户名：
-> 如果没有配置邮箱与用户名，提交时会提示配置：
-> ```
-> $ git commit -m "Add configure.php.dev.env.md"
-> *** Please tell me who you are.
-> Run
->   git config --global user.email "you@example.com"
->   git config --global user.name "Your Name"
-> ```
+如果没有配置邮箱与用户名，提交时会提示配置：
+ ```
+ $ git commit -m "Add configure.php.dev.env.md"
+ *** Please tell me who you are.
+ Run
+   git config --global user.email "you@example.com"
+   git config --global user.name "Your Name"
+```
 
 ```
 //全局的设置 
@@ -423,14 +439,14 @@ To push the current branch and set the remote as upstream, use
 
 ## Git教程 
 
-官方教程：《Pro Git : 2nd Edition (2014)》    
+1. 官方教程：《Pro Git : 2nd Edition (2014)》    
 https://git-scm.com/book/en/v2  
 https://git-scm.com/book/zh （中文版）  
 
-廖雪峰的官方网站：《Git教程》  
+2. 廖雪峰的官方网站：《Git教程》  
 http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000  
 
-易佰：《Git教程》  
+3. 易佰：《Git教程》  
 http://www.yiibai.com/git/  
 
 Git远程操作详解  
@@ -449,6 +465,7 @@ http://www.ruanyifeng.com/blog/2014/06/git_remote.html
 
 
 ## 更新记录
+
 2016-05-17: 新增一些问题 
 2016-05-30: 完善补充内容 
 

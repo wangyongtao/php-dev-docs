@@ -81,9 +81,9 @@ OpenSSL 是一个强大的安全套接字层密码库，包括主要的密码算
 the OpenSSL library – required by NGINX SSL modules to support the HTTPS protocol:
 
 ```
-$ wget http://www.openssl.org/source/openssl-1.0.2h.tar.gz
-$ tar -zxf openssl-1.0.2h.tar.gz
-$ cd openssl-1.0.2h
+$ wget http://www.openssl.org/source/openssl-1.0.2e.tar.gz
+$ tar -zxf openssl-1.0.2e.tar.gz
+$ cd openssl-1.0.2e
 $ ./Configure darwin64-x86_64-cc --prefix=/usr/local/webserver/openssl --openssldir=/usr/local/webserver/openssl
 $ make
 $ sudo make install
@@ -91,8 +91,6 @@ $ sudo make install
 查看版本(检测是否安装成功):  
 $ /usr/local/webserver/openssl/bin/openssl version  
 OpenSSL 1.0.2h  3 May 2016  
-
-
 
 
 查看OpenSSL支持的平台列表：
@@ -117,13 +115,6 @@ $./Configure LIST
 
 下载并安装Nginx:
 
-注意本示例中Nginx安装路径有修改，与默认的安装的路径可能不同：  
-> 修改后的具体配置路径如下：
-> prefix=/usr/local/webserver/nginx  
-> sbin-path=/usr/local/webserver/nginx/nginx  
-> conf-path=/usr/local/webserver/nginx/nginx.conf  
-> pid-path=/usr/local/webserver/nginx/nginx.pid 
-
 ```
 // 指定安装在/usr/local/webserver/目录下：
 $ wget http://nginx.org/download/nginx-1.8.1.tar.gz
@@ -137,7 +128,6 @@ $ ./configure --prefix=/usr/local/webserver/nginx \
     --with-openssl=../openssl-1.0.2h \
     --with-pcre=../pcre-8.38 \
     --with-zlib=../zlib-1.2.8
-$ make 
 ```
 
 参数说明：
@@ -225,7 +215,7 @@ into the system, or build the OpenSSL library statically from the source
 with nginx by using --with-openssl=<path> option.
 ```
 分析: 启用with-http_ssl_module模块，但没有启用openssl, 启用的SSL模块需要依赖openssl库  
-解决: configure时增加参数 [with-openssl=../openssl-1.0.2h].
+解决: configure时增加参数 [with-openssl=../openssl-1.0.2e].
 
 
 ### 报错2: 参数配置路径出错
@@ -292,7 +282,7 @@ make: *** [build] Error 2
 分析： 这个报错在网上有好多种原因造成的，因此也有许多的解决办的。
 只要系统是64位系统，然后configure前在指明一下是64位系统，就没问题了。
 解决：
-(1)将openssl-1.0.2h目录中， 文件Makefile中的[darwin-i386-cc]全部替换成[darwin64-x86_64-cc]
+(1)将openssl-1.0.2e目录中， 文件Makefile中的[darwin-i386-cc]全部替换成[darwin64-x86_64-cc]
 (2)检测自己的系统是以32位模式运行，还是以64位模式运行，确保是以64位模式运行。
 (3)要为当前启动磁盘选择 64 位内核，请在“终端”中使用下列命令：sudo systemsetup -setkernelbootarchitecture x86_64
 ```
@@ -308,8 +298,8 @@ changes to kernel architecture failed to save!
 内容:
 nginx: [error] open() "/usr/local/webserver/nginx/nginx.pid" failed (2: No such file or directory)
 
-分析: 
-解决: 使用nginx -c的参数指定nginx.conf文件的位置:
+分析:
+解决：使用nginx -c的参数指定nginx.conf文件的位置:
 /usr/local/webserver/nginx/nginx -c /usr/local/webserver/nginx/nginx.conf
 
 注意这里的nginx路径，在编译时有指定，可能像网上的有些不同，默认应该是：
@@ -321,10 +311,10 @@ $ sudo /usr/local/webserver/nginx/nginx -t
 nginx: [emerg] open() "/usr/local/webserver/nginx/nginx.conf" failed (2: No such file or directory)  
 nginx: configuration file /usr/local/webserver/nginx/nginx.conf test failed  
 
-复制配置文件: (复制一份)
+复制配置文件：(复制一份)
 $sudo cp nginx.conf.default nginx.conf
 
-再次检测: (OK)
+再次检测： (OK)
 $ sudo /usr/local/webserver/nginx/nginx -t  
 nginx: the configuration file /usr/local/webserver/nginx/nginx.conf syntax is ok  
 nginx: configuration file /usr/local/webserver/nginx/nginx.conf test is successful  

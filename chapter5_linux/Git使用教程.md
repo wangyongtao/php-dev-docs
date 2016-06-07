@@ -1,69 +1,253 @@
-Git使用教程.md
+git.doc.md
 
-# Git简介  
+
+## Git简介  
 
 Git是一个分布式的版本控制系统(DVCS, Distributed Version Control Systems).
 
 Git官网： https://git-scm.com/  
 Git下载： https://git-scm.com/download/  
 
-### Git常用命令  
+
+## Git基础命令 
+
+获取Git的版本:  
+$ git --version  
+
+查看当前分支状态:  
+$ git status
+
+查看当前分支的变化:  
+$ git diff 
+
+
+列出当前的配置：
+git config -l  (列出所有的配置)  
+git config -l --global (列出所有全局的配置)  
+git config -l --local (列出所有本地的配置)  
+
+
+## Git常用命令  
+
+(1) 分支操作：git branch
+
+查看本地分支: 当前分支前面会标一个(*)星号
+git branch  
+
+列出所有分支(包括远程分支)
+git branch -a  
+git branch --all  
+
+列出所有远程分支：  
+git branch -r  
+
+
+(2) 将本地更改加入版本追踪:  git add  
+
+将当前更改或者新增的文件加入到Git的索引中(stage区)，即加入版本历史中。
+
+$ git add git.doc.md  
+$ git add *  
+
+(3) 删除文件: git rm
+
+删除文件：
+
+```
+// 先查看有哪些文件可以删除,但是不真执行删除
+// 参数 -r:递归移除目录
+$ git rm -r -n demo/*
+rm 'demo/README.md'
+rm 'demo/section1.md'
+// 执行删除文件：
+// 通过git status查看这次的删除操作已经可以提交了
+$ git rm -r demo/*
+rm 'demo/README.md'
+rm 'demo/section1.md'
+```
+
+(4) 提交更新: git commit  
+提交更新： 将索引内容添加到仓库中(HEAD)
+$ git commit -m "UPDATE:message" 
+
+(5) 推送更新: git push： 
+将本地分支的更新,推送到远程主机
+$ git push  
+
+(6) 切换分支: git checkout 
+切换分支: 检出branch分支
+$ git checkout  
+$ git checkout -b newBrach origin/master
+
+
+创建并切换分支:
+$ git checkout -b fea_20160506 origin/develope
+git checkout -b develope origin/develope
+
+git checkout dev_branch  
+git checkout -b fea_526 origin/fea_526
+
+
+git branch -l 
+git checkout -b FEA_MALLSIMP-282 remotes/origin/FEA_MALLSIMP-282
+
+
+(7) 合并分支: git merge  
+
+格式：git merge [from_branch] [to_branch]  
+
+说明: 合并分支，将 from_branch 分支的代码，合并到 to_branch 分支上  
+示例： 
+```
+//将origin/develop分支的代码合并到当前分支上
+$ git merge origin/develop
+
+//将master分支的代码合并到dev_branch分支上
+//可以看到：本次合并，提示有冲突，需要解决再提交
+$ git merge master dev_branch
+Auto-merging git.doc.md
+CONFLICT (content): Merge conflict in git.doc.md
+Automatic merge failed; fix conflicts and then commit the result.
+```  
+
+(8) 删除分支:   
+
+git branch –d [BranchName]
+git branch --delete [BranchName]
+
+示例：  
+```
+//删除一个分支 dev_001 :  
+$ git branch -d dev_001
+Deleted branch dev_001 (was 0ef67e1).
+```
+
+
+(9) 重命名分支： git branch –m
+
+git branch –m oldName newName
+
+参数-m,不会覆盖已有分支名称，即如果名为 newName 的分支已经存在，则会提示已经存在了。
+参数-M,就会覆盖已有分支名称，即会强制覆盖名为 newName 的分支
+
+
+
+远程管理：
+
+> 远程管理命令： 
+> （1） git clone 克隆操作  
+> （2） git remote 远程操作  
+> （3） git fetch 远程拉取  
+> （4） git pull 远程拉取并合并  
+> （5） git push 推送到远程仓库  
+
+
+克隆操作：git clone  
+使用: git clone [<options>] [--] <repo> [<dir>]
+
+git remote  
+
+$ git remote 列出所有远程主机  
+$ git remote -v 列出所有远程主机,并带上网址  
+$ git remote show <HOST_NAME> 列出远程主机的详细信息   
+$ git remote add <HOST_NAME> <HOST_URL> 添加远程主机  
+$ git remote rm <HOST_NAME> 删除远程主机  
+$ git remote rename <HOST_NAME_OLD> <HOST_NAME_NEW> 远程主机的改名  
+
+
+拉取远程分支：git fetch  
+
+$ git fetch <远程主机名> 将所有分支数据拉取到本地
+$ git fetch <远程主机名> <分支名> 将制定的分支数据拉取到本地
+ 
+操作示例：
+```  
+//比如，取回origin主机的master分支。    
+$ git fetch origin master   
+$ git fetch origin master  
+From code.test.com:wangyt/dev-docs  
+ * branch   master  -> FETCH_HEAD   
+
+//比如，取回origin主机的dev分支。
+$ git fetch origin dev
+From code.test.com:wangyt/dev-docs
+ * branch   dev  -> FETCH_HEAD
+
+//取回远程主机的更新以后，使用git checkout命令创建一个新的分支：
+//比如，在origin/master的基础上，创建一个新分支newBrach：  
+$ git checkout -b newBrach origin/master
+
+```  
+
+
 
 git pull：取回远程主机某个分支的更新，再与本地的指定分支合并
 
 格式：git pull <远程主机名> <远程分支名>:<本地分支名>
 
-示例：
+示例：  
 ```
+//拉取远程仓库dev分支的更新，并默认与本地当前分支合并
 $ git pull origin dev
-From code.XXX.com:wangyt/php-dev-docs
- * branch            dev        -> FETCH_HEAD
+From code.test.com:wangyt/dev-docs
+ * branch dev -> FETCH_HEAD
+Already up-to-date.
+
+//拉取远程仓库master分支的更新，并与指定的本地dev分支合并
+$ git pull origin master:dev
+From code.test.com:wangyt/dev-docs
+   384f2e8..39995f8  master     -> dev
+warning: fetch updated the current branch head.
+fast-forwarding your working tree from
+commit 384f2e848cb57af88c60e66965d9f7d1f6998b16.
 Already up-to-date.
 ```
 
+git push : 推送到远程仓库  
 
-git log
-
-查看日志：git log  
-参数--pretty=online显示成一行  
-> git log  
-> git log --pretty=online
+git push <远程仓库名> <分支名>  
 
 
+$ git push
+warning: push.default is unset; its implicit value has changed in
+Git 2.0 from 'matching' to 'simple'.
+使用 matching 参数是 Git 1.x 的默认行为，即如果你执行 git push 但没有指定分支，它将 push 所有你本地的分支到远程仓库中对应匹配的分支。
+而 Git 2.x 默认的是 simple，即执行 git push 没有指定分支时，只有当前分支会被 push 到远程分支。
 
+git stash
 
-mkdir git-test
-cd git-test/
-git init
-vim readme.txt
-git status
-git add readme.txt
-git commit -m 'add new file readme.txt'
+git stash list 
 
-vim readme.txt
-git status
-git diff readme.txt
-git commit -m 'update readme.txt'
+git stash pop
 
-git add readme.txt
-git commit -m 'update readme.txt'
-git log
-git status
+代码比较： git diff
 
-vim readme.txt
-git commit -m 'update readme.txt:TEST'
-git add readme.txt
-git commit -m 'update readme.txt:TEST'
+使用 git diff比较文件的变化，会进入Vi界面状态，输入“:q”退出比较。  
+```
+//比较文件git.doc.md的变化：  
+$ git diff git.doc.md  
+```
 
+查看日志： git log 
 
+查看Git日志:  
+$ git log   
 
+查看所有日志，每条记录一行:  
+$ git log --pretty=oneline  
 
+查看所有日志，并有图表展示  
+$ git log --all --decorate --graph 
 
-回到上一个版本
-git reset --hard HEAD^
+查看所有日志，并用图表展示，每条记录一行  
+$ git log --all --decorate --graph --pretty=oneline 
 
-回到某个指定的 commit id 版本：
-git reset --hard 3628164
+恢复本地删除的文件:
+直接从本地把文件checkout出来就可以了，用不着从远程服务器上pull下来，因为，所有的历史版本你的本地都有的。
+具体做法 git checkout file 同时恢复多个被删除的文件：  
+git ls-files -d | xargs -i git checkout {}  
+
+git reflog 则列出了head曾经指向过的一系列commit  
 
 使用 git reflog 查看命令历史
 $ git reflog
@@ -73,72 +257,10 @@ c585eb1 HEAD@{1}: reset: moving to HEAD^
 c585eb1 HEAD@{3}: commit: update readme.txt
 6d0aee0 HEAD@{4}: commit (initial): add new file readme.txt
 
-
-```
-//编辑完文件，查看状态，会提示可能的操作
-$ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-        modified:   git.doc.md
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-Administrator@BQ-DN-BJB-022 MINGW64 /d/working/php-dev-docs (master)
-$ git branch
-  dev
-* master
-
-Administrator@BQ-DN-BJB-022 MINGW64 /d/working/php-dev-docs (master)
-$ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-        modified:   git.doc.md
-no changes added to commit (use "git add" and/or "git commit -a")
-
-Administrator@BQ-DN-BJB-022 MINGW64 /d/working/php-dev-docs (master)
-$ git add git.doc.md
-
-Administrator@BQ-DN-BJB-022 MINGW64 /d/working/php-dev-docs (master)
-$ git commit -m "UPDATE git.doc.md"
-[master daeebd5] UPDATE git.doc.md
- 1 file changed, 52 insertions(+), 10 deletions(-)
-
-Administrator@BQ-DN-BJB-022 MINGW64 /d/working/php-dev-docs (master)
-$ git status
-On branch master
-Your branch is ahead of 'origin/master' by 1 commit.
-  (use "git push" to publish your local commits)
-nothing to commit, working directory clean
-
-Administrator@BQ-DN-BJB-022 MINGW64 /d/working/php-dev-docs (master)
-$ git push
-Counting objects: 3, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 1.17 KiB | 0 bytes/s, done.
-Total 3 (delta 1), reused 0 (delta 0)
-To git@code.boqii.com:wangyt/php-dev-docs
-   710954f..daeebd5  master -> master
-
-Administrator@BQ-DN-BJB-022 MINGW64 /d/working/php-dev-docs (master)
-$ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
-nothing to commit, working directory clean
-
-
-
-
-### 配置
+## 配置
 
 列出当前的配置：
-
+ 
 git config -l  
 git config --global  
 git config --local
@@ -162,23 +284,61 @@ $ git config --global user.name "WangYongTao"
 ```
 //局部的设置 
 $ git config --local user.email "ahwyt2008@163.com"
-$ git config --local user.name "WANGYongTao"
+$ git config --local user.name "WANG-YongTao"
 ```
 
+git config --global push.default simple
 
 
+## 常用问题  
 
-# Git教程 
+$ git push  
+fatal: The current branch fea_20160506 has no upstream branch.
+To push the current branch and set the remote as upstream, use
+    git push --set-upstream origin fea_20160506
 
-官方教程：《Pro Git : 2nd Edition (2014)》  
-https://git-scm.com/book/en/v2
-https://git-scm.com/book/zh （中文版）
+如何删除中文名的文件：
+> 在使用git status的时候,会发现中文文件名无法正常显示：  
+> deleted: "\345\246\202\344\275\225\345\256\211\350\243\205PHP.md"  
+> 
+> 正常显示中文，让Git不对中文文件名进行处理：  
+> $ git config --global core.quotepath false  
+>  
+> 运行 git status，可以看到中文正常显示了。  
+> deleted: "如何安装PHP.md"  
+> 
+> 但是，无法使用 git rm [name] 来删除该文件:  
+> 可以运行 git add -u 将所有改动的文件提交到暂存区，制定删除文件名，直接提交就可以了。  
+> $ git add -u  
 
-廖雪峰的官方网站：《Git教程》
-http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
 
-易佰：《Git教程》
-http://www.yiibai.com/git/
+## Git教程 
+
+官方教程：《Pro Git : 2nd Edition (2014)》    
+https://git-scm.com/book/en/v2  
+https://git-scm.com/book/zh （中文版）  
+
+廖雪峰的官方网站：《Git教程》  
+http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000  
+
+易佰：《Git教程》  
+http://www.yiibai.com/git/  
+
+Git远程操作详解  
+http://www.ruanyifeng.com/blog/2014/06/git_remote.html  
 
 
-# 参考链接 
+## 参考链接   
+
+https://git-scm.com/  
+http://www.liaoxuefeng.com/  
+http://www.yiibai.com/  
+http://www.ruanyifeng.com/blog/2014/06/git_remote.html  
+...    
+
+
+## 更新记录
+2016-05-17: 新增一些问题 
+2016-05-30: 完善补充内容 
+
+[END]

@@ -33,8 +33,17 @@ grep
 
 ps -ef |grep nginx
 
+文件权限：
 
+使用chown命令来改变文件所有者。chown命令是change owner（改变拥有者）的缩写
+chown [-R] 账号名称 文件或目录
+chown [-R] 账号名称:用户组名称 文件或目录
 
+使用chgrp命令来改变文件所属用户组，该命令就是change group（改变用户组）的缩写：
+chgrp [-R] 用户组名称 dirname/filename
+
+chmod(变动文件属性)
+文件属性的设置方式有两种，，别离是数字和标记。
 
 
 find   ~   -name   "*.txt"   -print    #在$HOME中查.txt文件并显示
@@ -61,8 +70,9 @@ perl -p -i -e "s/\),\(/\r\n/g" tb_channel.sql
 
 Ptyhon: SimpleHTTPServer
 ```
-//可以使用http://[IP地址]:8000/来访问web页面或共享文件
-$ sudo python -m SimpleHTTPServer 80
+//可以使用http://[IP地址]:8001/来访问web页面或共享文件
+//http://127.0.0.1:8000/
+$ sudo python -m SimpleHTTPServer 8001
 ```
 
 PHP: 从5.4.0起， CLI SAPI 提供了一个内置的Web服务器
@@ -77,5 +87,21 @@ $ php -S 0.0.0.0:8080:8000 -t foo/
 ```
 
 
+### 在Mac中，在命令行中用sublime打开文件
+
+//打开当前文件夹: 
+$ /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl ./
+
+为Sublime做个软连接：
+$ ls /Applications |grep "Sublime"
+Sublime Text 2.app 
+Sublime Text.app （这个是Sublime Text 3）
+
+//比如为Sublime Text 2.app做软件接：
+$ sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
+//比如为Sublime Text.app做软件接：
+$ sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
+$ /usr/local/bin/sublime ./
+$ sublime ./
 
 

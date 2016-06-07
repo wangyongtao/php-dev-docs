@@ -241,6 +241,34 @@ Loaded Configuration File => /usr/local/webserver/php54/php.ini
 可以看到：  
 Loaded Configuration File	/usr/local/webserver/php54/php.ini
 
+错误：ERROR: [pool wwwuser] cannot get uid for user 'wwwuser'
+描述：修改php-fpm.conf，将配置文件中的 user 和 group 部分的 nobody 改成 www
+$ sudo /usr/local/webserver/php54/sbin/php-fpm 
+[23-May-2016 16:09:59] ERROR: [pool wwwuser] cannot get uid for user 'wwwuser'
+[23-May-2016 16:09:59] ERROR: FPM initialization failed
+原因：此用户名不能随便改，需要改成系统存在的用户或者新建的用户，比如"www"
+解决：修改php-fpm.conf，将配置文件中的 user 和 group 的内容，从"wwwuser"再改成"www"
+
+错误: fopen(43): failed to open stream: Permission denied
+描述： 在代码中打开文件，写入日志，报错""
+给目录777权限都不可以
+var_dump(is_writable($filepath)); //输出false
+
+echo getcwd(); //输出的是 "nobody"
+修改php-fpm.conf配置文件，将配置文件中的 user 和 group 部分的 nobody 改成 www:
+echo getcwd(); //输出的是 "_www"
+
+
+错误新：ERROR: [pool wwwroot] cannot get uid for user 'wwwroot'
+$ sudo /usr/local/webserver/php54/sbin/php-fpm 
+[23-May-2016 16:09:59] ERROR: [pool wwwroot] cannot get uid for user 'wwwroot'
+[23-May-2016 16:09:59] ERROR: FPM initialization failed
+原因：此用户名不能随便改，需要改成系统存在的用户或者新建的用户，比如"www"
+
+Mac下查看所有用户和组
+dscacheutil -q group
+$ cat /etc/group
+
 
 ## Nginx配置
 

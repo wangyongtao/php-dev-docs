@@ -94,7 +94,9 @@ git checkout -b FEA_MALLSIMP-282 remotes/origin/FEA_MALLSIMP-282
 
 (7) 合并分支: git merge  
 
-格式：git merge [from_branch] [to_branch]  
+说明: git-merge - Join two or more development histories together
+格式: git merge [from_branch] [to_branch]  
+
 
 说明: 合并分支，将 from_branch 分支的代码，合并到 to_branch 分支上  
 示例： 

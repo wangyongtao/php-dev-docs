@@ -123,7 +123,16 @@ git branch --delete [BranchName]
 $ git branch -d fea_develop
 error: Cannot delete the branch 'fea_develop' which you are currently on.
 
-// 删除一个分支 fea_develop :  
+// 切换到master分支，再来删除分支 fea_develop : 
+// 报错: 分支 fea_develop 没有被合并
+// 如果不想合并，可以使用 git branch -D fea_develop 直接删除
+$ git checkout master   
+$ git branch -d fea_develop 
+error: The branch 'fea_develop' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D fea_develop'.
+
+// 现在不想直接删除，把他合并到master主干分支上，再来删除
+$ git merge fea_develop 
 $ git branch -d fea_develop
 Deleted branch fea_develop (was 0ef67e1).
 ```

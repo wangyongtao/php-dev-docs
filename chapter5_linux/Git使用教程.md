@@ -131,6 +131,50 @@ git branch –m oldName newName
 参数-M,就会覆盖已有分支名称，即会强制覆盖名为 newName 的分支
 
 
+(10) 重命名文件: git mv
+
+格式:  
+git-mv - Move or rename a file, a directory, or a symlink
+
+操作示例:   
+
+创建一个文件，提交到版本库，重命名后再提交到版本库，查看日志
+
+```
+// 创建一个test.txt文件，写入'test.txt'内容
+$ echo 'test.txt' > test.txt 
+
+//查看状态:看到文件前有两个问号，说明还被加入版本控制中
+$ git status -s 
+?? test.txt
+
+//将文件加入版本控制中
+$ git add *  
+$ git commit -m "add test.txt" 
+[fea_develop 9b9a163] add test.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+
+// 移动文件test.tx，重命名为test_01.txt
+$ git mv test.txt test_01.txt 
+// 查看状态:看到文件前有个大写字母R(Rename),表示被重命名
+$ git status -s 
+ R  test.txt -> test_01.txt
+
+// 提交更新
+$ git add *
+$ git commit -m "rename:test.txt->test02.txt"
+ [fea_develop 80f3288] rename:test.txt->test02.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename test.txt => test_01.txt (100%)
+
+// 查看日志
+$ git log --pretty=oneline
+80f32889999702899109f2e038e3f0a5b2b9efc6 rename:test.txt->test_01.txt
+9b9a16365a6b7fc3ffb0e4c7090d6a85accd4f96 add test.txt
+... ... 
+```
+
 
 远程管理：
 

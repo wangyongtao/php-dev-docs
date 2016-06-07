@@ -119,9 +119,13 @@ git branch --delete [BranchName]
 
 示例：  
 ```
-//删除一个分支 dev_001 :  
-$ git branch -d dev_001
-Deleted branch dev_001 (was 0ef67e1).
+// 删除分支，需要checkout都别的分支，否则会报错
+$ git branch -d fea_develop
+error: Cannot delete the branch 'fea_develop' which you are currently on.
+
+// 删除一个分支 fea_develop :  
+$ git branch -d fea_develop
+Deleted branch fea_develop (was 0ef67e1).
 ```
 
 

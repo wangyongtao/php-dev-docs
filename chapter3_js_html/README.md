@@ -22,3 +22,15 @@ Ajax技术和跨域问题
 
 编写jQuery插件
 
+
+
+参考链接:
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
+
+http://www.w3school.com.cn/js/index.asp
+
+http://www.runoob.com/js/js-tutorial.html
+
+
+

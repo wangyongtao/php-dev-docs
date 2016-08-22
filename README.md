@@ -1,6 +1,6 @@
 ### php-developement-guide
 
-PHP开发教程
+PHP开发教程笔记
 
 The PHP Developement Guide in Chinese
 

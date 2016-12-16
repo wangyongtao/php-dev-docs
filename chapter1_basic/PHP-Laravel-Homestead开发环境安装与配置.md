@@ -16,7 +16,7 @@ $ sw_vers
 ProductName:  Mac OS X
 ProductVersion: 10.11.6
 BuildVersion: 15G31
-``
+```
 
 ### 不使用用Homestead，直接在本机安装:
 
@@ -175,6 +175,12 @@ $ sudo vim /etc/hosts
 ```
 (4) 打开浏览器，输入"http://kaixin123.app/", 可以正常访问。
 
+如果重新修改配置，需要重新加载vagrant： 
+
+```
+$ cd /Users/WangTom/Homestead
+$ vagrant reload --provision
+```
 
 登录虚拟机:
 

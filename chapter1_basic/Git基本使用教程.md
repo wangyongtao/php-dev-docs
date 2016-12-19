@@ -391,6 +391,17 @@ $ git rebase –i HEAD~3
 (4) 此时本地的（HEAD中）最后多次的提交已经被合并为一个提交。
 如果需要提交到远程仓库，运行git push --force origin master即可。
 
+* 修改提交的注释内容:
+> 使用 --amend 参数，进入文本编辑界面，修改内容后重新保存即可 
+> $ git commit --amend 
+
+
+* git blame
+
+git-blame - Show what revision and author last modified each line of a file
+
+
+
 
 ## 配置
 

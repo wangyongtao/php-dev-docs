@@ -144,38 +144,43 @@ $ git branch -r -d origin/fea_develop
 
 操作示例：  
 ```
-// 删除分支，需要checkout都别的分支，否则会报错
-$ git branch -d fea_develop
-error: Cannot delete the branch 'fea_develop' which you are currently on.
+    // 删除本地分支，需要先checkout到别的分支，否则会报错
+    $ git branch -d fea_develop
+    error: Cannot delete the branch 'fea_develop' which you are currently on.
 
-// 切换到master分支，再来删除分支 fea_develop : 
-// 报错: 分支 fea_develop 没有被完全合并
-// 如果不想合并，可以使用 git branch -D fea_develop 直接删除
-$ git checkout master   
-$ git branch -d fea_develop 
-error: The branch 'fea_develop' is not fully merged.
-If you are sure you want to delete it, run 'git branch -D fea_develop'.
+    // 切换到master分支，再来删除分支 fea_develop : 
+    // 报错: 分支 fea_develop 没有被完全合并
+    // 如果不想合并，可以使用 git branch -D fea_develop 直接删除
+    $ git checkout master   
+    $ git branch -d fea_develop 
+    error: The branch 'fea_develop' is not fully merged.
+    If you are sure you want to delete it, run 'git branch -D fea_develop'.
 
-// 现在不想直接删除，把他合并到master主干分支上
-// 报错: 还是分支 fea_develop 没有被完全合并,还需要合并到远程分支才行
-$ git merge fea_develop  
-$ git branch -d fea_develop
-warning: not deleting branch 'fea_develop' that is not yet merged to
-         'refs/remotes/origin/master', even though it is merged to HEAD.
-error: The branch 'fea_develop' is not fully merged.
-If you are sure you want to delete it, run 'git branch -D fea_develop'.
+    // 现在不想直接删除，把他合并到master主干分支上
+    // 报错: 还是分支 fea_develop 没有被完全合并,还需要合并到远程分支才行
+    $ git merge fea_develop  
+    $ git branch -d fea_develop
+    warning: not deleting branch 'fea_develop' that is not yet merged to
+        'refs/remotes/origin/master', even though it is merged to HEAD.
+    error: The branch 'fea_develop' is not fully merged.
+    If you are sure you want to delete it, run 'git branch -D fea_develop'.
 
-// 现在不想直接删除，把他合并到master主干分支上，再来删除
-$ git checkout fea_develop 
-$ git push
-$ git checkout master 
-$ git merge fea_develop 
-$ git branch -d fea_develop
-Deleted branch fea_develop (was dcf9d19).
+    // 现在不想直接删除，把他合并到master主干分支上，再来删除
+    $ git checkout fea_develop 
+    $ git push
+    $ git checkout master 
+    $ git merge fea_develop 
+    $ git branch -d fea_develop
+    Deleted branch fea_develop (was dcf9d19).
 
-//删除远程分支：
-$ git branch -r -d origin/fea_develop
-Deleted remote-tracking branch origin/fea_develop (was dcf9d19).
+    //删除远程分支：
+    $ git branch -r -d origin/fea_develop
+    Deleted remote-tracking branch origin/fea_develop (was dcf9d19).
+    
+    //删除远程分支2：将一个空分支推送到远程，就是删除远程分支了
+    $ git push origin :fea_kaixincms_dev
+    To git@code.wang123.net:code/kaixincms.git
+     - [deleted]         fea_kaixincms_dev
 ```
 
 

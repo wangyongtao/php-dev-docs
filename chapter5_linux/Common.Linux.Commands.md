@@ -105,3 +105,13 @@ $ /usr/local/bin/sublime ./
 $ sublime ./
 
 
+
+使用dos2unix, unix2dos 命令实现 DOS <=> UNIX text file 转换
+
+dos2unix 是将 Windows 格式文件转换为 Unix/Linux 格式的实用命令。
+unix2dos 则是将 Unix/Linux 格式文件转换为Windows格式文件的命令。
+
+Windows格式文件的换行符为\r\n ,而 Unix/Linux 文件的换行符为\n.
+dos2unix 命令其实就是将文件中的\r\n 转换为 \n。
+unix2dos 命令其实就是将文件中的\n 转换为 \r\n。
+

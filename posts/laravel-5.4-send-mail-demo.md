@@ -65,7 +65,30 @@ MAIL_FROM_NAME=cnwytnet
 * 需要增加mail.php配置文件:
 
 确保Luemn项目中存在 `app/config/mail.php` 配置文件。  
-若不存在可以从 Laravel 代码中复制一份。
+若不存在可以从 Laravel 代码中复制一份, 或者新建一份，示例如下: 
+
+```
+<?php
+return [
+    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'port' => env('MAIL_PORT', 587),
+    'from' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name'    => env('MAIL_FROM_NAME', 'Example'),
+    ],
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'username' => env('MAIL_USERNAME'),
+    'password' => env('MAIL_PASSWORD'),
+    'sendmail' => '/usr/sbin/sendmail -bs',
+    'markdown' => [
+        'theme' => 'default',
+        'paths' => [
+            resource_path('views/vendor/mail'),
+        ],
+    ],
+];
+```
 
 
 ## 创建发邮件脚本  

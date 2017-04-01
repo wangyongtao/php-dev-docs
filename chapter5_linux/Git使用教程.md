@@ -365,6 +365,19 @@ $ git rebase –i HEAD~3
 (4) 此时本地的（HEAD中）最后多次的提交已经被合并为一个提交。
 如果需要提交到远程仓库，运行git push --force origin master即可。
 
+## 忽略特殊文件 gitignore
+
+在Git项目中添加一个“.gitignore”文件，告诉Git哪些文件不需要添加到版本管理中。
+
+检验.gitignore的使用是git status命令
+可以用git check-ignore命令检查
+
+比如: nodejs开发时，就不要提交 node_modules 文件夹，就可以把node_modules放到 “.gitignore” 文件中
+```
+# 忽略 node_modules 目录
+node_modules/*
+```
+
 
 ## 配置
 

@@ -3,7 +3,16 @@ Common.Linux.Commands.md
 常用的Linux命令
 
 
+kill -- terminate or signal a process
 
+Some of the more commonly used signals:
+     1       HUP (hang up)
+     2       INT (interrupt)
+     3       QUIT (quit)
+     6       ABRT (abort)
+     9       KILL (non-catchable, non-ignorable kill)
+     14      ALRM (alarm clock)
+     15      TERM (software termination signal)
 cd 
 
 ls 
@@ -21,12 +30,25 @@ curl
 
 
 
+## 压缩与解压  
 
 .tar.gz    
 格式解压为 tar   -zxvf   xx.tar.gz
 
 .tar.bz2   
 格式解压为 tar   -jxvf    xx.tar.bz2
+
+解压
+tar –xvf file.tar //解压 tar包
+tar -xzvf file.tar.gz //解压tar.gz
+tar -xjvf file.tar.bz2   //解压 tar.bz2
+tar –xZvf file.tar.Z   //解压tar.Z
+unrar e file.rar //解压rar
+unzip file.zip //解压zip
+
+unzip accounts.zip
+gunzip logs.jsonl.gz
+
 
 
 grep 

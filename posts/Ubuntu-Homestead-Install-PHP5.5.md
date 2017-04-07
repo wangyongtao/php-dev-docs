@@ -1,6 +1,13 @@
 安装php-5.5环境
 
-由于某些原因，需要安装php5.4以及phpredis扩展，现记录如下。
+
+> Laravel Homestead 是一个官方预载的 Vagrant「封装包」，提供你一个美好的开发环境，不需要在本机端安装 PHP、HHVM、网页服务器或任何服务器软件。
+> Homestead 可以在任何 Windows、Mac 或 Linux 上面运行，里面包含了 Nginx 网页服务器、PHP 5.6、MySQL、Postgres、Redis、Memcached等软件，
+> 还有所有你要开发精彩的 Laravel 应用程序所需的软件。
+
+目前，使用最新的 Laravel - Homestead, 安装的PHP版本是7.1.
+
+由于某些原因，我们需要在Vagrant虚拟机中，额外安装php5.5以及phpredis扩展，现记录如下。
 
 $ cd ~/Homestead
 $ vagrant ssh
@@ -282,7 +289,30 @@ redis
 ```
 
 
+### 扩展阅读
 
+(1) brew  
+
+brew(即Homebrew), 是macOS上的软件包管理工具, 能在Mac中方便的安装软件或者卸载软件,类似ubuntu系统下的apt-get的功能.
+Homebrew- The missing package manager for OS X
+http://brew.sh/
+
+(2) Vagrant  
+
+Vagrant是一个基于Ruby的工具，用于创建和部署虚拟化开发环境。它使用Oracle的开源VirtualBox虚拟化系统，使用Chef创建自动化虚拟环境。
+https://www.vagrantup.com/
+
+(3) Laravel  
+
+Laravel是一套简洁、优雅的PHP Web开发框架(PHP Web Framework)。
+https://laravel.com/
+
+(4) PHP5 与 PHP7
+
+PHP 是一种非常流行的服务器端脚本语言,主要适用于Web开发领域。  
+2004年7月，PHP 5.0版本正式发布，目前最新为 PHP 5.6.30 (19 Jan 2017).   
+2015年12月,PHP 7.0版本正式发布, 目前最新为 PHP7.1.3 (16 Mar 2017).  
+http://php.net/
 
 
 

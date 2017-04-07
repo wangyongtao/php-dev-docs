@@ -1,5 +1,6 @@
-git.doc.md
+Git-Quick-Start.md
 
+Git的基本使用教程
 
 ## Git简介  
 
@@ -130,19 +131,18 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 (8) 删除分支:   
 
-git branch –d [BranchName]
-git branch --delete [BranchName] 
+git branch –d [BranchName] // 删除 --delete
+git branch --delete [BranchName] // 删除 --delete
+git branch –D [BranchName] // Shortcut for --delete --force.
 
-git push origin :branchName 把一个空分支push到Server上删除该分支
+* 把一个空分支push到Server上, 即删除该分支
+$ git push origin :<BranchName> 
 
-示例: 
-// 删除本地分支:
-$ git branch -d fea_develop
-
-// 删除远程分支
-$ git branch -r -d origin/fea_develop
-
+* 删除远程分支
+$ git push --delete origin <BranchName> 
+ 
 操作示例：  
+
 ```
     // 删除本地分支，需要先checkout到别的分支，否则会报错
     $ git branch -d fea_develop
@@ -180,7 +180,7 @@ $ git branch -r -d origin/fea_develop
     //删除远程分支2：将一个空分支推送到远程，就是删除远程分支了
     $ git push origin :fea_kaixincms_dev
     To git@code.wang123.net:code/kaixincms.git
-     - [deleted]         fea_kaixincms_dev
+     - [deleted] fea_kaixincms_dev
 ```
 
 

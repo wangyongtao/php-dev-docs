@@ -1,0 +1,8 @@
+title: Php-developement-guide
+description: PHP教程&文档整理_The PHP Programming Language Guide
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions

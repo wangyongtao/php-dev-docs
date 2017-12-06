@@ -29,7 +29,7 @@ Thread model: posix
 
 1-3 创建安装目录/webserver：
 
-为了方便管理，在/usr/local/下新建一个目录webserver，以后软件安装都可以加"—prefix=/usr/loca/webserver"来安装到这个目录下：
+为了方便管理，在/usr/local/下新建一个目录webserver，以后软件安装都可以加"—prefix=/usr/local/webserver"来安装到这个目录下：
 
 ```
 $sudo mkdir webserver
@@ -47,34 +47,56 @@ PCRE(Perl Compatible Regular Expressions)是一个Perl库，包括 Perl兼容的
 the PCRE library – required by NGINX Core and Rewrite modules and provides support for regular expressions:
 
 ```
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.bz2
-tar jxvf pcre-8.38.tar.bz2
-cd pcre-8.38
-./configure --prefix=/usr/local/webserver/pcre-8.38
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.41.tar.bz2
+tar jxvf pcre-8.41.tar.bz2
+cd pcre-8.41
+./configure --prefix=/usr/local/webserver/pcre-8.41
 make
 make test
 sudo make install
 ```
 
-### 安装zlib:
+### 下载 zlib 库:
 
-zlib是提供数据压缩用的函式库，目前zlib是一种事实上的业界标准，最新版本是:zlib 1.2.8（April 28, 2013）。
+zlib是提供数据压缩用的函式库，目前zlib是一种事实上的业界标准，最新版本是:
+
+    zlib 1.2.11（January 15, 2017）。
 
 zlib was written by Jean-loup Gailly (compression) and Mark Adler (decompression).
 
-the zlib library – required by NGINX Gzip module for headers compression:
+zlib库是 ngx_http_gzip_module 模块必须安装的，如果不需要nginx gzip压缩的话可以不开启(建议安装并开启)。
+本模块不需要编译安装，只需要讲源码地址告诉 Nginx 即可(使用参数--with-zlib=zlib-path)，由 Nginx 来编译安装。
+
 
 ```
-wget http://zlib.net/zlib-1.2.8.tar.gz
-tar zxvf zlib-1.2.8.tar.gz
-cd zlib-1.2.8
-./configure --prefix=/usr/local/webserver/zlib
+# 下载
+wget http://www.zlib.net/zlib-1.2.11.tar.gz
+tar zxvf zlib-1.2.11.tar.gz
+cd zlib-1.2.11
+
+# 如果需要安装，可以执行以下命令
+./configure 
 make
 make test
 sudo make install  
 ```
 
-### 安装openssl:
+### 下载 PCRE 库: 
+
+PCRE(Perl Compatible Regular Expressions)是一个轻量级的函数库Perl库，包括 perl 兼容的正则表达式库。
+PCRE 库是 ngx_http_rewrite_module 模块必须安装的，主要用来页面重定向和正则替换URI的。
+同 zlib 库一样，本模块不需要编译安装，只需要讲源码地址告诉 Nginx 即可(使用参数--with-pcre=pcre-path)，由 Nginx 来编译安装。
+
+
+官方下载地址: https://ftp.pcre.org/pub/pcre/
+
+目前最新的版本是 pcre-8.41 和 pcre2-10.30 两个，由于 Nginx 只支持(version 4.4 — 8.41)， 这里我们下载的是 pcre-8.41 版本 。 
+
+    wget https://ftp.pcre.org/pub/pcre/pcre-8.41.tar.gz
+    tar -zxf pcre-8.41.tar.gz
+ 
+
+### 安装 OpenSSL 库:
 
 OpenSSL 是一个强大的安全套接字层密码库，包括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。
 
@@ -126,9 +148,20 @@ $ ./configure --prefix=/usr/local/webserver/nginx \
     --pid-path=/usr/local/webserver/nginx/nginx.pid \
     --with-http_ssl_module \
     --with-openssl=../openssl-1.0.2h \
-    --with-pcre=../pcre-8.38 \
-    --with-zlib=../zlib-1.2.8
+    --with-pcre=../pcre-8.41 \
+    --with-zlib=../zlib-1.2.11
 ```
+
+
+./configure
+    --sbin-path=/usr/local/nginx/nginx
+    --conf-path=/usr/local/nginx/nginx.conf
+    --pid-path=/usr/local/nginx/nginx.pid
+    --with-http_ssl_module
+    --with-http_gzip_static_module
+    --with-http_v2_module
+    --with-pcre=../pcre-8.41
+    --with-zlib=../zlib-1.2.11
 
 参数说明：
 
@@ -220,16 +253,16 @@ with nginx by using --with-openssl=<path> option.
 
 ### 报错2: 参数配置路径出错
 
-参数with-pcre,如果指定的是with-pcre=/usr/local/webserver/pcre-8.38,则执行 make 时会报错：  
+参数with-pcre,如果指定的是with-pcre=/usr/local/webserver/pcre-8.41,则执行 make 时会报错：  
 
 ```
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -f objs/Makefile
-cd /usr/local/pcre-8.38 \
+cd /usr/local/pcre-8.41 \
     && if [ -f Makefile ]; then /Applications/Xcode.app/Contents/Developer/usr/bin/make distclean; fi \
     && CC="cc" CFLAGS="-O2 -pipe " \
     ./configure --disable-shared
 /bin/sh: ./configure: No such file or directory  
-make[1]: *** [/usr/local/webserver/pcre-8.38/Makefile] Error 127  
+make[1]: *** [/usr/local/webserver/pcre-8.41/Makefile] Error 127  
 make: *** [build] Error 2
 ```
 
@@ -247,7 +280,7 @@ $  ./configure --help | grep 'pcre'
 注意这里的路径是 PCRE library sources, 是PCRE的源代码。  
 直接去官网下载PCRE, 解压至与 nginx-1.8.1 平级的目录中(或者其他的路径)。  
 
-解决： 将PCRE路径指定为源代码的路径，比如：with-pcre=/softwares/pcre-8.38  
+解决： 将PCRE路径指定为源代码的路径，比如：with-pcre=/softwares/pcre-8.41  
 
 ### 报错3 ：
 $ sudo ./config  --prefix=/usr/local/openssl

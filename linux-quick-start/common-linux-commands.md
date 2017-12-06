@@ -15,13 +15,32 @@ Some of the more commonly used signals:
      15      TERM (software termination signal)
 cd 
 
-ls 
+* ls 
 
-ls -al
-ls -alh 
+    ls -al
+    ls -alh 
 
-df -h
+* 检查文件系统的磁盘空间占用情况 df  
 
+    $ df -h
+    Filesystem      Size   Used  Avail Capacity iused      ifree %iused  Mounted on
+    /dev/disk2     1.0Ti  348Gi  681Gi    34% 5524742 4289442537    0%   /
+    devfs          191Ki  191Ki    0Bi   100%     661          0  100%   /dev
+    map -hosts       0Bi    0Bi    0Bi   100%       0          0  100%   /net
+    map auto_home    0Bi    0Bi    0Bi   100%       0          0  100%   /home
+
+* 查询目录文件的磁盘使用空间 du 
+    
+    // 查看当前目录下的大小
+    $ du -sh
+    355M    .
+    
+    // 查看指定目录 vendor 的大小 
+    $ du -sh vendor 
+    46M    vendor
+
+    // 安装文件大小排序
+    $ du ./app/ | sort -nr | more
 
 
 wget
@@ -90,23 +109,31 @@ perl -p -i -e "s/\),\(/\r\n/g" tb_channel.sql
 
 
 
-Ptyhon: SimpleHTTPServer
-```
-//可以使用http://[IP地址]:8001/来访问web页面或共享文件
-//http://127.0.0.1:8000/
-$ sudo python -m SimpleHTTPServer 8001
-```
+### 简单的WEB服务器
+
+* Ptyhon: SimpleHTTPServer
+    
+可以使用http://[IP地址]:8001/来访问web页面或共享文件
+
+    ```
+    //http://127.0.0.1:8000/
+    $ sudo python -m SimpleHTTPServer 8001
+    ```
+
+* PHP 内置的Web服务器
 
 PHP: 从5.4.0起， CLI SAPI 提供了一个内置的Web服务器
 
-```
-//启动Web服务器,当前目录
-$ php -S localhost:8000
-//指定目录 -t
-$ php -S localhost:8000 -t foo/
-//指定目录,可以通过ip远程访问 
-$ php -S 0.0.0.0:8080:8000 -t foo/
-```
+    ```
+    //启动Web服务器,当前目录
+    $ php -S localhost:8000
+
+    //指定目录 -t
+    $ php -S localhost:8000 -t foo/
+
+    //指定目录,可以通过ip远程访问 
+    $ php -S 0.0.0.0:8080:8000 -t foo/
+    ```
 
 
 ### 在Mac中，在命令行中用sublime打开文件
@@ -127,13 +154,54 @@ $ /usr/local/bin/sublime ./
 $ sublime ./
 
 
+* [dos2unix / unix2dos]
 
 使用dos2unix, unix2dos 命令实现 DOS <=> UNIX text file 转换
 
-dos2unix 是将 Windows 格式文件转换为 Unix/Linux 格式的实用命令。
-unix2dos 则是将 Unix/Linux 格式文件转换为Windows格式文件的命令。
+  dos2unix 将 Windows 文件格式(\r\n) 转换为 Unix/Linux 文件格式(\n)。
+  unix2dos 将 Unix/Linux 文件格式(\n)转换为 DOS/Windows 文件格式(\r\n)。
 
-Windows格式文件的换行符为\r\n ,而 Unix/Linux 文件的换行符为\n.
-dos2unix 命令其实就是将文件中的\r\n 转换为 \n。
-unix2dos 命令其实就是将文件中的\n 转换为 \r\n。
+  UNIX/Linux 使用 `0x0A`（LF)作为换行符(\n); DOS/Windows 使用 `0x0D0A`（CRLF）作为换行符 (\r\n).
 
+
+| Command                            | Description                              |
+| ---------------------------------- | ---------------------------------------- |
+| cat [filename]                     | Display file’s contents to the standard output device(usually your monitor). |
+| cd /directorypath                  | Change to directory.                     |
+| chmod [options] mode filename      | Change a file’s permissions.             |
+| chown [options] filename           | Change who owns a file.                  |
+| clear                              | Clear a command line screen/window for a fresh start. |
+| cp [options] source destination    | Copy files and directories.              |
+| date [options]                     | Display or set the system date and time. |
+| df [options]                       | Display used and available disk space.   |
+| du [options]                       | Show how much space each file takes up.  |
+| file [options] filename            | Determine what type of data is within a file. |
+| find [pathname] [expression]       | Search for files matching a provided pattern. |
+| grep [options] pattern [filesname] | Search files or output for a particular pattern. |
+| kill [options] pid                 | Stop a process. If the process refuses to stop, use kill -9 pid. |
+| less [options] [filename]          | View the contents of a file one page at a time. |
+| ln [options] source [destination]  | Create a shortcut.                       |
+| locate filename                    | Search a copy of your filesystem for the specifiedfilename. |
+| lpr [options]                      | Send a print job.                        |
+| ls [options]                       | List directory contents.                 |
+| man [command]                      | Display the help information for the specified command. |
+| mkdir [options] directory          | Create a new directory.                  |
+| mv [options] source destination    | Rename or move file(s) or directories.   |
+| passwd [name [password]]           | Change the password or allow (for the system administrator) tochange any password. |
+| ps [options]                       | Display a snapshot of the currently running processes. |
+| pwd                                | Display the pathname for the current directory. |
+| rm [options] directory             | Remove (delete) file(s) and/or directories. |
+| rmdir [options] directory          | Delete empty directories.                |
+| ssh [options] user@machine         | Remotely login to another Linux machine.Leave an ssh session by typing exit. |
+| su [options] [user [arguments]]    | Switch to another user account.          |
+| tail [options] [filename]          | Display the last *n* lines of a file (the default is10). |
+| tar [options] filename             | Store and extract files from a tarfile (.tar) or tarball (.tar.gz or.tgz). |
+| top                                | Displays the resources being used on your system. Press q toexit. |
+| touch filename                     | Create an empty file with the specified name. |
+| who [options]                      | Display who is logged on.                |
+
+-- from [COMMON LINUX COMMANDS](http://www.dummies.com/computers/operating-systems/linux/common-linux-commands/)
+
+
+
+[END]

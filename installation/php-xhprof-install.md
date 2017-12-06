@@ -1,4 +1,4 @@
-函数级分层性能分析工具-Xhprof的安装与使用
+PHP性能分析工具-Xhprof的安装与使用
 
 
 XHProf 是一个轻量级的分层性能测量分析器。
@@ -183,24 +183,31 @@ Existing runs:
 
 * 登录到 vagrant 虚拟机
 
+```
     $ cd ~/homestead
     $ vagrant ssh
+```
 
 * 安装 XHProf 扩展
-    
+
+```    
     cd ~/Code
     git clone https://github.com/longxinH/xhprof.git ./xhprof
     cd xhprof/extension/
     /usr/bin/phpize
     ./configure --with-php-config=/usr/bin/php-config
     make && sudo make install
+```
 
 * 创建一个目录，存放分析结果
 
+```
     mkdir -p /tmp/xhprof/
+```
 
 * 在文件 `/etc/php/7.1/fpm/php.ini` 增加 xhprof 扩展配置: 
 
+```
     $ sudo vi /etc/php/7.1/fpm/php.ini
 
     > [xhprof]
@@ -208,19 +215,24 @@ Existing runs:
     > xhprof.output_dir = /tmp/xhprof 
 
     (xhprof.output_dir 内容就是我们刚刚创建的目录)
+```
 
 * 安装graphviz绘图软件 (可选)
 
+```
     $ sudo apt-get install graphviz
     $ whereis dot
     dot: /usr/bin/dot /usr/share/man/man1/dot.1.gz
+```
 
 * 配置访问界面
 
 在本机中增加host记录:
 
+```
  $ sudo vi /etc/hosts
  192.168.10.10 xhprof.app
+```
 
 配置 Homestead.yaml 新增一个网站:
 

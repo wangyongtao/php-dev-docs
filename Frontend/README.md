@@ -10,6 +10,7 @@
 | jQuery       | JS框架         |
 | Vuejs        | 构建用户界面的渐进式框架 |
 | Reactjs      | 构建用户界面的JS框架  |
+| Angular      | 前端框架  |
 | Sass         | CSS扩展语言      |
 
 * x-editable  

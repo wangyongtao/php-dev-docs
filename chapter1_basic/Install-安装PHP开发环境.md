@@ -9,43 +9,51 @@
 但是若需要与标准配置不同的功能（例如一个安全服务器，或者不同的数据库驱动扩展模块），可能需要编译 PHP 和／或 web 服务器。
 如果不熟悉编译软件，可以考虑搜索一下是否有人已经编译了包含所需要功能的预编译包。
 
-### PHP开发环境包括什么？
+### PHP开发环境包括什么
+
+服务器： Nginx, Apache
+语言：PHP
+数据库： MySQL, Sqlite, MongoDB, Redis
+缓存: Memcache, Redis
 
 
 
-### 如何安装PHP开发环境？
+### 如何安装PHP开发环境
 
 1 使用一键安装包：  
 
 Windows系统:
 
-PHPStudy:  
-http://www.phpstudy.net/
+> PHPStudy:  
+> http://www.phpstudy.net/
 
-AppServ:  
-http://www.appservnetwork.com/en/
+> AppServ:  
+> http://www.appservnetwork.com/en/
 
-WampServer:   
-http://www.wampserver.com/
+> WampServer:   
+> http://www.wampserver.com/
 
-UPUPW: 
-http://www.upupw.net/
+> UPUPW: 
+> http://www.upupw.net/
 
-XAMPP:支持Windows/Linux/MacOS平台   
-https://www.apachefriends.org/zh_cn/index.html
+> XAMPP:支持Windows/Linux/MacOS平台   
+> https://www.apachefriends.org/zh_cn/index.html
 
 Linux系统: 
 
-http://lnmp.org/
-http://www.lanmps.com/
-XAMPP:支持Windows/Linux/MacOS平台   
-https://www.apachefriends.org/zh_cn/index.html
+> http://lnmp.org/
+> http://www.lanmps.com/
+> XAMPP:支持Windows/Linux/MacOS平台   
+> https://www.apachefriends.org/zh_cn/index.html
 
 2 使用源码编译安装： 
 
+Linux: CentOS, Ubuntu 
+Mac:  OS X
 
 
-### 如何使用源码编译安装PHP环境？
+### 如何使用源码编译安装PHP环境
+
 > + OpenSSl
 > + Mcrypt
 > + zlib
@@ -220,14 +228,28 @@ Mac-mini:php-5.6.9 WangTom$
 
 ```
 # 报错： curl
+执行configure配置时报错：  
 ... ... 
 checking whether to enable ctype functions... yes
 checking for cURL support... yes
 checking for cURL in default path... not found
 configure: error: Please reinstall the libcurl distribution -
     easy.h should be in <curl-dir>/include/curl/
-Mac-mini:php-5.6.9 WangTom$
+$
 ```
+curl-7.49.0.tar.bz2 (7.1M) 
+$ wget https://curl.haxx.se/download/curl-7.49.0.tar.bz2 
+$ wget http://www.execve.net/curl/curl-7.49.0.tar.bz2 (备选下载地址)
+$ tar jxf curl-7.49.0.tar.bz2  
+$ cd curl-7.49.0  
+$ ./configure --prefix=/usr/local/webserver/curl
+$ make 
+$ sudo make install
+
+$ /usr/local/webserver/curl/bin/curl -V
+curl 7.49.0 (x86_64-apple-darwin15.3.0) libcurl/7.49.0 zlib/1.2.5
+Protocols: dict file ftp gopher http imap ldap ldaps pop3 rtsp smtp telnet tftp 
+Features: IPv6 Largefile libz UnixSockets 
 
 
 
